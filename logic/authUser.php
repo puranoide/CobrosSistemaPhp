@@ -10,6 +10,29 @@ function login($db, $username, $password) {
     return $result;
 }
 
+function register($db, $username, $password) {
+
+    if (verifyUsernameExists($db, $username)) {
+        return false;
+    }else{
+        $stmt = $db->prepare("INSERT INTO users (username, password) VALUES (:username, :password)");
+        $stmt->bindValue(':username', $username, SQLITE3_TEXT);
+        $stmt->bindValue(':password', $password, SQLITE3_TEXT);
+        $result = $stmt->execute();
+        return $result;
+    }
+
+    
+}
+
+function verifyUsernameExists($db, $username) {
+    $stmt = $db->prepare("SELECT * FROM users WHERE username = :username"); 
+    $stmt->bindValue(':username', $username, SQLITE3_TEXT);
+    $result = $stmt->execute();
+
+    return $result->fetchArray(SQLITE3_ASSOC);
+}
+
 // Lógica para manejar el formulario
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     switch ($_POST['action']) {
@@ -29,6 +52,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
             break;
 
+        case 'register':
+            $username = $_POST['username'];
+            $password = $_POST['password'];
+            $result = register($db, $username, $password);
+            if ($result) {
+                header('Location:../login.php?auth=Registro exitoso');
+                exit();
+            } else {
+                header('Location:../register.php?message=El usuario ya existe');
+                exit();
+            }
+            break;
         default:
             exit();
     }
