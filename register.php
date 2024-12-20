@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>register</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -190,9 +190,9 @@
     </div>
 
     <div class="container">
-        <h1>Login</h1>
+        <h1>Register</h1>
         <form method="post" action="logic/authUser.php">
-            <input type="hidden" name="action" value="login">
+            <input type="hidden" name="action" value="register">
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" required>
             <br>
