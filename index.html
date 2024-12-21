@@ -1,24 +1,266 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pagina en construccion</title>
+    <title>KipuPay App</title>
     <style>
-        body{
-            background-color: #000;
-            color: #fff;
+        body {
+            background-color: rgb(255, 255, 255);
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            display: block;
+            justify-content: center;
+            align-items: center;
+            height: 90vh;
+            max-width: 100%;
+            overflow-x: hidden;
+            font-family: Arial, sans-serif;
+            opacity: 1;
+            transition: opacity 2s ease-in-out;
         }
-        h1{
+
+        header {
+            width: 100%;
+            height: 50px;
+            background-color: rgb(31, 31, 31);
+            color: rgb(255, 255, 255);
+            opacity: 0.9;
+            display: flex;
+            justify-content: space-between;
+            align-content: center;
+            padding: 10px;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+
+        .conteinerlogobrand {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 50px;
+        }
+        .conteinerlogobrand:hover {
+            cursor: pointer;
+        }
+        .conteinerlogobrand img {
+            width: 60px;
+            height: 50px;
+            margin-right: 10px;
+        }
+
+        .conteinerlogobrand h1 {
+            margin: 0;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .menu {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            margin-right: 20px;
+        }
+
+        .menu ul {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .menu li {
+            margin: 0 10px;
+        }
+
+        .menu a {
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+        }
+
+        .heroSection {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 5% 10% 7% 10%;
+            background-color: rgb(255, 255, 255);
+        }
+
+        .imgHero {
+            width: 50%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .imgHero img {
+            width: 90%;
+            height: 90%;
+            object-fit: cover;
+        }
+
+        .ContentHero {
+            width: 50%;
+            height: 100%;
+            margin-left: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: start;
+            align-items: start;
+        }
+
+        .ContentHero h1 {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .ContentHero p {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .ContentHero button {
+            padding: 10px 20px;
+            background-color: rgb(96, 98, 255);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .ContentHero button:hover {
+            background-color: #0056b3;
+        }
+
+        .conteinerInfoexample {
+            display: block;
+            justify-content: center;
+            align-items: center;
+            margin: 5% 10% 1% 10%;
+            background-color: rgb(255, 255, 255);
+        }
+
+        .imgInfoexample {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;        
+            align-items: center;
+        }   
+
+        .imgInfoexample img {
+            width: 100px;
+            height: 100px;
+            margin: 0 100px 60px 100px;
+        }
+        .conteinerInfoexample h2 {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 40px;
             text-align: center;
-            margin-top: 200px;
-            font-size: 50px;
         }
+        .conteinerInfoexample p {
+            font-size: 20px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            text-align: center;
+        }
+        .conteinerInfoexample button {
+            padding: 10px 20px;
+            background-color: rgb(96, 98, 255);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+            margin: 2% auto;
+        }
+        footer {
+            background-color: rgb(255, 255, 255);
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            width: 100%;
+        }
+
+        footer p a {
+            margin: 5px 0;
+            color: #000;
+        }
+
+        .copyright {
+            font-size: 14px;
+            color: #000;
+        }
+        
     </style>
 </head>
-<body>
 
-    <h1>pagina en construccion</h1>
-    
+<body>
+    <header>
+        <div class="conteinerlogobrand" onclick="window.location.href='index.html'">
+            <img src="assets/img/logo.png" alt="logo">
+            <h1>KipuPay App</h1>
+        </div>
+    </header>
+    <div class="heroSection">
+        <div class="imgHero">
+            <img src="assets/img/hero.webp" alt="">
+        </div>
+        <div class="ContentHero">
+            <h1>¡Bienvenido a KipuPay!</h1>
+            <p>Descubre la forma más fácil de cobrar a tus clientes de forma automatizada, sin complicaciones.</p>
+            <button onclick="window.location.href='register.php'">regitrarse Ahora</button>
+        </div>
+    </div>
+
+    <div class="conteinerInfoexample">
+
+        <h2>
+            ¿Cómo funciona KipuPay?
+        </h2>
+        <div class="imgInfoexample">
+            <img src="assets/img/experience_11325715.png" alt="">
+            <img src="assets/img/calendar_11252774.png" alt="">
+            <img src="assets/img/exchange_3029252.png" alt="">
+        </div>
+        <p>KipuPay es sencillo y rapido de usar solo tienes que registrar a tus clientes,definir el monto,<br> la fecha del cobro y nosotros nos encargamos del resto</p>
+        <button onclick="window.open('https://www.youtube.com','_blank')">Mira su funcionamiento</button>
+
+        
+    </div>
+
+    <footer>
+        <p class="copyright">&copy; 2024 kipupay. Todos los derechos reservados</p>
+        <p><a href="privacy_policy.php">Politica de Privacidad</a> | <a href="terms_of_service.php">Terminos de Servicio</a></p>
+        <p><a href="contact.php">Contactanos</a></p>
+    </footer>
 </body>
+
+<script>
+    window.addEventListener("load", function () {
+        InitPage();
+    });
+
+    function funtionAlertinit() {
+        alert("Esta pagina de presentacion aun esta en construccion,pero ya puedes registrarte,cuando todo funcione te notificaremos <3");
+    }
+    function InitPage(){
+        setTimeout(function() {
+            funtionAlertinit();  // Adjust the time in milliseconds as needed
+        }, 1000);
+        
+    }
+</script>
 </html>
