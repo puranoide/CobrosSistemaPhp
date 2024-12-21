@@ -3,7 +3,7 @@
 
 $servername = "localhost";
 $username = "u685818680_kipupayadmin";
-$password = "";
+$password = "41/fXsR[";
 $database = "u685818680_kipupay";//kipuPay
 
 $con = new mysqli($servername, $username, $password, $database);
