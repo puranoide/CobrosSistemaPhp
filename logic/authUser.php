@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     exit();
                 }
             } else {
-                //header('Location:../login.php?message=Usuario o contraseña incorrectos');
+                header('Location:../login.php?message=Usuario o contraseña incorrectos');
                 exit();
             }
             break;

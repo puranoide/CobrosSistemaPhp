@@ -4,18 +4,11 @@
 $servername = "localhost";
 $username = "u685818680_kipupayadmin";
 $password = "41/fXsR[";
-$database = "u685818680_kipupay"; //kipuPay
+$database = "u685818680_kipupay";//kipuPay
 
 $con = new mysqli($servername, $username, $password, $database);
 
 if ($con->connect_error) {
-    die("Connection failed: " . $con->connect_error);
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $database = "kipuPay";
-
-    $con = new mysqli($servername, $username, $password, $database);
     die("Connection failed: " . $con->connect_error);
 }
 
