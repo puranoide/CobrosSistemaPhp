@@ -16,6 +16,11 @@ if ($con->connect_error) {
 /*creaciontablas
 
 $servername = "localhost";
+$username = "root";
+$password = "";
+$database = "kipuPay";
+
+$servername = "localhost";
 $username = "u685818680_kipupayadmin";
 $password = "41/fXsR[";
 $database = "u685818680_kipupay";
