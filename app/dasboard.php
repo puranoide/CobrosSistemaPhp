@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['user_id'])) {
+if (!isset($_SESSION['idUser'])) {
     header("Location: ../login.php");
     exit();
 }
@@ -211,7 +211,7 @@ if (!isset($_SESSION['user_id'])) {
 
         <a href="../login.php">Login</a>
         <a href="../register.php">Register</a>
-        <a href="">Cerrar Sesion</a>
+        <a href="../logic/authUser.php?action=logout">Cerrar Sesion</a>
     </div>
 
     <h1 class="title-page">Dashboard</h1>
