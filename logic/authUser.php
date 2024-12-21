@@ -42,9 +42,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $result = login($db, $username, $password);
             if ($result && $row = $result->fetchArray(SQLITE3_ASSOC)) {
                 session_start();
-                echo    "Login exitoso";
                 $_SESSION['username'] = $row['username'];
-                //header("Location:../index.php");
+                $_SESSION['user_id'] = $row['idUser'];
+                header("Location:../app/dasboard.php?auth=Login exitoso");
                 exit();
             } else {
                 header('Location:../login.php?message=Usuario o contraseña incorrectos');
