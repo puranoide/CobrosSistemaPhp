@@ -1,12 +1,35 @@
 <?php
-// Ruta absoluta al archivo de la base de datos
-$db_file = __DIR__ . '/cobros.db';
 
-// Crear conexión SQLite
-$db = new SQLite3($db_file);
 
-// Verificar conexión
-if (!$db) {
-    die("Error al conectar con la base de datos: " . $db->lastErrorMsg());
+$servername = "localhost";
+$username = "u685818680_kipupayadmin";
+$password = "";
+$database = "u685818680_kipupay";//kipuPay
+
+$con = new mysqli($servername, $username, $password, $database);
+
+if ($con->connect_error) {
+    die("Connection failed: " . $con->connect_error);
 }
-?>
+
+
+/*creaciontablas
+
+$servername = "localhost";
+$username = "u685818680_kipupayadmin";
+$password = "41/fXsR[";
+$database = "u685818680_kipupay";
+
+
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(100) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+)
+
+
+
+
+*/
