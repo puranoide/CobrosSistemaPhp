@@ -71,16 +71,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $password = $_POST['password'];
             $result = register($con, $username, $password);
             if ($result) {
-                
                 session_start();
                 $row = $result->fetch_array(MYSQLI_ASSOC);
                 $_SESSION['user_id'] = $row['id'];
                 $_SESSION['username'] = $row['username'];
                 $_SESSION['password'] = $row['password'];
-                if (isset($_SESSION['user_id']) && isset($_SESSION['username']) && isset($_SESSION['password'])) {
-                    header("Location:../app/dasboard.php?auth=Registro exitoso");
-                    exit();
-                }
+
+                header("Location:../app/dasboard.php?auth=Registro exitoso");
                 exit();
             } else {
                 header('Location:../login.php?message=El usuario ya existe');
