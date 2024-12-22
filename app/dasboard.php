@@ -252,7 +252,13 @@ $clients = listClients($con);
                         <button onclick="window.location.href = 'clientmanagement.php?action=view&id=<?= $client['id'] ?>';">View</button>
                     </td>
                 </tr>
-            <?php endforeach; ?>
+            <?php endforeach;
+            if (empty($clients)): ?>
+                <tr>
+                    <td colspan="4">No clients found.</td>
+                </tr>
+            <?php endif;
+            ?>
         </tbody>
     </table>
 
