@@ -6,7 +6,7 @@ if (!isset($_SESSION['idUser'])) {
 }
 function listClients($con)
 {
-    $query = "SELECT * FROM clients";
+    $query = "SELECT * FROM clients WHERE idUser = " . $_SESSION['idUser'];
     $result = $con->query($query);
     $clients = array();
     while ($row = $result->fetch_assoc()) {
