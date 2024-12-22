@@ -4,6 +4,21 @@ if (!isset($_SESSION['idUser'])) {
     header("Location: ../login.php");
     exit();
 }
+function listClients($con)
+{
+    $query = "SELECT * FROM clients";
+    $result = $con->query($query);
+    $clients = array();
+    while ($row = $result->fetch_assoc()) {
+        $clients[] = $row;
+    }
+    return $clients;
+}
+
+include_once('../config/bd.php');
+
+$clients = listClients($con);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -223,35 +238,21 @@ if (!isset($_SESSION['idUser'])) {
             <tr>
                 <th>Client Name</th>
                 <th>debt Amount</th>
-                <th>amount paid</th>
-                <th>Balance</th>
                 <th>Payment Date</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>John Doe</td>
-                <td>$1000</td>
-                <td>$500</td>
-                <td>$500</td>
-                <td>2023-06-01</td>
-                <td>
-                    <button>View</button>
-                    <button>View</button>
-                </td>
-            </tr>
-            <tr>
-                <td>Jane Smith</td>
-                <td>$2000</td>
-                <td>$1000</td>
-                <td>$1000</td>
-                <td>2023-06-15</td>
-                <td>
-                    <button>View</button>
-                    <button>View</button>
-                </td>
-            </tr>
+            <?php foreach ($clients as $client) : ?>
+                <tr>
+                    <td><?= $client['name'] ?></td>
+                    <td>$<?= $client['debitPayment'] ?></td>
+                    <td>$<?= $client['nextPayment'] ?></td>
+                    <td>
+                        <button onclick="window.location.href = 'clientmanagement.php?action=view&id=<?= $client['id'] ?>';">View</button>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
         </tbody>
     </table>
 
