@@ -268,13 +268,6 @@ elseif (isset($_GET['action']) && $_GET['action'] == 'edit'):
         exit();
     }
     $con->close();
-    echo "<br>";
-    echo "<br>";
-    echo "<br>";
-    echo "<br>";
-    echo "<pre>";
-    print_r($client);
-    echo "</pre>";
     $date = new DateTime($client['nextPayment']);
     $day = $date->format('d');
   
