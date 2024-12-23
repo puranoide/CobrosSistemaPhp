@@ -20,21 +20,21 @@ if ($Clientid == null):
         <style>
             body {
                 font-family: Arial, sans-serif;
-                background-color: rgb(31, 17, 36);
+                background-color: #f4f4f9;
                 background-size: cover;
                 background-position: center;
                 margin: 0;
                 display: block;
                 justify-content: center;
-                
+
                 height: 90vh;
                 max-width: 100%;
                 overflow-x: hidden;
             }
 
             .navbar {
-                background-color: rgb(92, 48, 105);
-                color: #fff;
+                background-color: #2c3e50;
+                color: #ecf0f1;
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -48,7 +48,8 @@ if ($Clientid == null):
 
             .navbar a {
                 font-size: 18px;
-                color: #fff;
+                color: #ecf0f1;
+
                 text-decoration: none;
                 margin: 0 10px;
             }
@@ -58,25 +59,23 @@ if ($Clientid == null):
 
             }
 
-
-
             .identification {
-
                 font-size: 18px;
-                color: rgb(255, 255, 255);
+                color: #ecf0f1;
                 text-decoration: none;
                 position: fixed;
                 top: 90%;
                 left: 90%;
                 width: 8%;
                 text-align: center;
-                background-color: rgb(92, 48, 105);
+                background-color: #2c3e50;
                 padding: 1px;
                 border-radius: 5px;
             }
 
+
             .onlineindicator {
-                color: #fff;
+                color: #ecf0f1;
                 animation: pulse 1s infinite alternate;
             }
 
@@ -93,10 +92,12 @@ if ($Clientid == null):
                 width: 100%;
                 max-width: 400px;
                 padding: 20px;
-                background-color: rgb(92, 48, 105);
+                background-color: #2c3e50;
+
                 border-radius: 5px;
                 box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
             }
+
             .formAddClient label {
                 display: block;
                 margin-bottom: 5px;
@@ -113,6 +114,7 @@ if ($Clientid == null):
                 border-radius: 5px;
                 font-size: 16px;
             }
+
             .formAddClient input[type="number"] {
                 width: 80%;
                 padding: 10px;
@@ -130,12 +132,13 @@ if ($Clientid == null):
                 border-radius: 5px;
                 cursor: pointer;
                 font-size: 16px;
-            }   
+            }
 
             .formAddClient input[type="submit"]:hover {
                 background-color: #45a049;
             }
-            .formAddClient select{
+
+            .formAddClient select {
                 width: 80%;
                 padding: 10px;
                 margin-bottom: 10px;
@@ -175,12 +178,12 @@ if ($Clientid == null):
                 }
 
                 .identification {
-                font-size: 14px;
-                width: 40%;
-                top: 90%;
-                left:55%;
-                
-            }
+                    font-size: 14px;
+                    width: 40%;
+                    top: 90%;
+                    left: 55%;
+
+                }
 
             }
         </style>
@@ -193,68 +196,71 @@ if ($Clientid == null):
             <a href="../logic/authUser.php?action=logout">Cerrar Sesion</a>
         </div>
 
-            <form action="../logic/client.php" method="POST" class="formAddClient">
-                <input type="hidden" name="action" value="addClient">
-                <label for="name">Nombre:</label>
-                <input type="text" id="name" name="name" required>
+        <form action="../logic/client.php" method="POST" class="formAddClient">
+            <input type="hidden" name="action" value="addClient">
+            <label for="name">Nombre:</label>
+            <input type="text" id="name" name="name" required>
 
-                <label for="email">Correo:</label>
-                <input type="email" id="email" name="email" required>
+            <label for="email">Correo:</label>
+            <input type="email" id="email" name="email" required>
 
-                <label for="phone">pago mensual:</label>
-                <input type="number" step="0.01" id="debt" name="debt" required>
+            <label for="phone">pago mensual:</label>
+            <input type="number" step="0.01" id="debt" name="debt" required>
 
-                <label for="datePayment">Fecha de Pago mensual:</label>
-                <select name="datePayment" id="datePayment">
+            <label for="datePayment">Fecha de Pago mensual:</label>
+            <select name="datePayment" id="datePayment">
 
-                </select>
+            </select>
 
-                <input type="submit" value="Agregar Cliente">
-            </form>
+            <input type="submit" value="Agregar Cliente">
+        </form>
 
 
         <div class="identification">
-        <p><span class="onlineindicator">Online:</span> <?php echo $_SESSION['username']; ?> </p>
-    </div>
+            <p><span class="onlineindicator">Online:</span> <?php echo $_SESSION['username']; ?> </p>
+        </div>
     </body>
 
-            <script>
-                function obtenerDias() {
-                    var fechaActual = new Date();
-                    var diaActual = fechaActual.getDate();
-                    var mesActual = fechaActual.getMonth() + 1;
-                    var anioActual = fechaActual.getFullYear();
+    <script>
+        function obtenerDias() {
+            var fechaActual = new Date();
+            var diaActual = fechaActual.getDate();
+            var mesActual = fechaActual.getMonth() + 1;
+            var anioActual = fechaActual.getFullYear();
 
-                    var select = document.getElementById("datePayment");
+            var select = document.getElementById("datePayment");
 
-                    for (var i = 1; i <= 31; i++) {
-                        var option = document.createElement("option");
-                        option.value = i;
-                        option.text = i;
-                        select.add(option);
-                    }
-                }
+            for (var i = 1; i <= 31; i++) {
+                var option = document.createElement("option");
+                option.value = i;
+                option.text = i;
+                select.add(option);
+            }
+        }
 
-                obtenerDias();
-            </script>
+        obtenerDias();
+    </script>
 
     </html>
 
-<?php 
-elseif (isset($_GET['action']) && $_GET['action'] == 'view'):?>
-        <!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Document</title>
-        </head>
-        <body>
-            
-           pagina en construccion 
-           <?=$_GET['id']?>
+<?php
+elseif (isset($_GET['action']) && $_GET['action'] == 'view'): ?>
+    <!DOCTYPE html>
+    <html lang="en">
 
-        </body>
-        </html>
-<?php  endif;
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+
+    <body>
+
+        pagina en construccion
+        <?= $_GET['id'] ?>
+
+    </body>
+
+    </html>
+<?php endif;
 ?>

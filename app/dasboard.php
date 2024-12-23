@@ -30,21 +30,20 @@ $clients = listClients($con);
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: rgb(31, 17, 36);
+            background-color: #f4f4f9;
             background-size: cover;
             background-position: center;
             margin: 0;
             display: block;
             justify-content: center;
-
             height: 90vh;
             max-width: 100%;
             overflow-x: hidden;
         }
 
         .navbar {
-            background-color: rgb(92, 48, 105);
-            color: #fff;
+            background-color: #2c3e50;
+            color: #ecf0f1;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -58,26 +57,25 @@ $clients = listClients($con);
 
         .navbar a {
             font-size: 18px;
-            color: #fff;
+            color: #ecf0f1;
             text-decoration: none;
             margin: 0 10px;
         }
 
         .navbar a:hover {
-            text-decoration: underline #fff;
-
+            text-decoration: underline #ecf0f1;
         }
 
         .auth {
             font-size: 18px;
-            color: rgb(0, 0, 0);
+            color: #34495e;
             text-decoration: none;
             position: fixed;
             top: 8%;
             left: 2%;
             width: 10%;
             text-align: center;
-            background-color: rgb(78, 245, 128);
+            background-color: #bdc3c7;
             padding: 10px;
             border-radius: 5px;
         }
@@ -86,51 +84,48 @@ $clients = listClients($con);
             width: 70%;
             height: 50px;
             margin: 0 auto;
-
             border-collapse: collapse;
-
         }
 
         .table-clients td {
             padding: 10px;
-
-            background-color: rgb(92, 48, 105);
+            background-color: #2c3e50;
             text-align: center;
             font-weight: bold;
-            color: #fff;
+            color: #ecf0f1;
         }
 
         .table-clients th {
             padding: 10px;
-            background-color: rgb(224, 224, 224);
+            background-color: #ecf0f1;
             text-align: center;
-            color: #000;
+            color: #34495e;
         }
 
         .table-clients button {
             padding: 5px 10px;
-            background-color: #007BFF;
+            background-color: #3498db;
             border: none;
             border-radius: 3px;
             cursor: pointer;
-            color: #fff;
+            color: #ecf0f1;
         }
 
         .table-clients button:hover {
-            background-color: #0056b3;
+            background-color: #2980b9;
             transition: background-color 0.3s ease;
         }
 
         .title-page {
             text-align: center;
-            color: #fff;
+            color: #34495e;
             margin-top: 5%;
         }
 
         .add-client {
             display: block;
-            background-color: rgb(153, 152, 152);
-            color: #fff;
+            background-color: #95a5a6;
+            color: #ecf0f1;
             border: none;
             border-radius: 5px;
             padding: 10px 20px;
@@ -141,48 +136,46 @@ $clients = listClients($con);
         }
 
         .add-client:hover {
-            background-color: rgb(102, 101, 101);
+            background-color: #7f8c8d;
             transition: background-color 0.3s ease;
         }
 
         .add-client:active {
-            background-color: rgb(102, 101, 101);
+            background-color: #7f8c8d;
         }
 
         .identification {
-
             font-size: 18px;
-            color: rgb(255, 255, 255);
+            color: #ecf0f1;
             text-decoration: none;
             position: fixed;
             top: 90%;
             left: 90%;
             width: 8%;
             text-align: center;
-            background-color: rgb(92, 48, 105);
+            background-color: #2c3e50;
             padding: 1px;
             border-radius: 5px;
         }
 
         .onlineindicator {
-            color: #fff;
+            color: #ecf0f1;
             animation: pulse 1s infinite alternate;
         }
 
         @keyframes pulse {
             0% {
-                color: #fff;
-
+                color: #ecf0f1;
             }
 
             50% {
-                color: rgb(78, 245, 128);
-                text-shadow: 0 0 10px rgb(78, 245, 128);
+                color: #1abc9c;
+                text-shadow: 0 0 10px #1abc9c;
             }
 
             100% {
-                color: rgb(78, 245, 128);
-                text-shadow: 0 0 20px rgb(78, 245, 128);
+                color: #1abc9c;
+                text-shadow: 0 0 20px #1abc9c;
             }
         }
 
@@ -214,8 +207,7 @@ $clients = listClients($con);
                 font-size: 14px;
                 width: 40%;
                 top: 90%;
-                left:55%;
-                
+                left: 55%;
             }
         }
     </style>
@@ -246,8 +238,8 @@ $clients = listClients($con);
             <?php foreach ($clients as $client) : ?>
                 <tr>
                     <td><?= $client['name'] ?></td>
-                    <td>$<?= $client['debitPayment'] ?></td>
-                    <td>$<?= $client['nextPayment'] ?></td>
+                    <td>S/.<?= $client['debitPayment'] ?></td>
+                    <td><?= $client['nextPayment'] ?></td>
                     <td>
                         <button onclick="window.location.href = 'clientmanagement.php?action=view&id=<?= $client['id'] ?>';">View</button>
                     </td>
