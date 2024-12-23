@@ -3,21 +3,12 @@ require_once('../config/bd.php');
 
 function loginUser($con, $username, $password)
 {
-    $userQuery = "SELECT * FROM users WHERE username=? AND password=?";
-    $stmt = $con->prepare($userQuery);
+    $stmt = $con->prepare("SELECT * FROM users WHERE username=? AND password=?");
     $stmt->bind_param("ss", $username, $password);
     $stmt->execute();
-    $loginResult = $stmt->get_result();
+    $result = $stmt->get_result();
     
-    if ($loginResult) {
-        if ($loginResult->num_rows > 0) {
-            return $loginResult->fetch_assoc();
-        } else {
-            return "Usuario no encontrado, intente de nuevo.";
-        }
-    } else {
-        return "Error al conectarse a la base de datos, contacte con soporte.";
-    }
+    return ($result && $result->num_rows > 0) ? $result->fetch_assoc() : false;
 }
 
 function createSessionUser($user)
@@ -39,45 +30,30 @@ function register($con, $username, $password)
         return false;
     }
     
-    $query = "INSERT INTO users (username, password) VALUES (?, ?)";
-    $stmt = $con->prepare($query);
+    $stmt = $con->prepare("INSERT INTO users (username, password) VALUES (?, ?)");
     $stmt->bind_param("ss", $username, $password);
     
-    if ($stmt->execute()) {
-        return $con->insert_id;
-    } else {
-        return false;
-    }
+    return $stmt->execute() ? $con->insert_id : false;
 }
 
 function getuserByid($con, $id)
 {
-    $userQuery = "SELECT * FROM users WHERE id=?";
-    $stmt = $con->prepare($userQuery);
+    $stmt = $con->prepare("SELECT * FROM users WHERE id=?");
     $stmt->bind_param("i", $id);
     $stmt->execute();
-    $loginResult = $stmt->get_result();
+    $result = $stmt->get_result();
     
-    if ($loginResult) {
-        if ($loginResult->num_rows > 0) {
-            return $loginResult->fetch_assoc();
-        } else {
-            return false;
-        }
-    } else {
-        return false;
-    }
+    return ($result && $result->num_rows > 0) ? $result->fetch_assoc() : false;
 }
 
 function verifyUsernameExists($con, $username)
 {
-    $userQuery = "SELECT * FROM users WHERE username=?";
-    $stmt = $con->prepare($userQuery);
+    $stmt = $con->prepare("SELECT * FROM users WHERE username=?");
     $stmt->bind_param("s", $username);
     $stmt->execute();
-    $loginResult = $stmt->get_result();
+    $result = $stmt->get_result();
     
-    return ($loginResult && $loginResult->num_rows > 0);
+    return ($result && $result->num_rows > 0);
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -87,18 +63,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     switch ($action) {
         case 'login':
-            $result = loginUser($con, $username, $password);
-            if (is_array($result)) {
-                createSessionUser($result);
+            if ($user = loginUser($con, $username, $password)) {
+                createSessionUser($user);
                 header("Location:../app/dasboard.php?auth=Login exitoso");
             } else {
-                header('Location:../login.php?message=' . $result);
+                header('Location:../login.php?message=Usuario no encontrado, intente de nuevo.');
             }
             break;
 
         case 'register':
-            $result = register($con, $username, $password);
-            if ($result !== false) {
+            if ($result = register($con, $username, $password)) {
                 $userbd = getuserByid($con, $result);
                 createSessionUser($userbd);
                 header("Location:../app/dasboard.php?auth=Registro exitoso");
@@ -106,22 +80,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 header('Location:../login.php?message=El usuario ya existe');
             }
             break;
-            logoutUser();
-            header("Location:../login.php?auth=Logout exitoso");
-            break;    
-
-        default:
-            exit();
     }
-}else if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+} else if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $action = $_GET['action'];
     switch ($action) {
         case 'logout':
             logoutUser();
             header("Location:../login.php?auth=Logout exitoso");
             break;
-        default:
-            exit();
     }
 }
 
