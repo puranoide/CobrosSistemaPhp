@@ -46,6 +46,9 @@ CREATE TABLE kipuPay.clients (
 )
 
 
+ALTER TABLE kipupay.clients ADD message TEXT NULL;
+
+
 
 
 

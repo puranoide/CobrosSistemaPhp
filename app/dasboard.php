@@ -232,6 +232,7 @@ $clients = listClients($con);
                 <th>Client Name</th>
                 <th>debt Amount</th>
                 <th>Payment Date</th>
+                <th>Message</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -241,14 +242,17 @@ $clients = listClients($con);
                     <td><?= $client['name'] ?></td>
                     <td>S/.<?= $client['debitPayment'] ?></td>
                     <td><?= $client['nextPayment'] ?></td>
+                    <td title="<?= $client['message'] ?>">
+                        <?= substr($client['message'], 0, 20) . '...' ?>
+                    </td>
                     <td>
-                        <button onclick="window.location.href = 'clientmanagement.php?action=view&id=<?= $client['id'] ?>';">View</button>
+                        <button onclick="window.location.href = 'clientmanagement.php?action=edit&id=<?= $client['id'] ?>';">Editar</button>
                     </td>
                 </tr>
             <?php endforeach;
             if (empty($clients)): ?>
                 <tr>
-                    <td colspan="4">No clients found.</td>
+                    <td colspan="5">No clients found.</td>
                 </tr>
             <?php endif;
             ?>
