@@ -4,7 +4,7 @@ if (!isset($_SESSION['idUser'])) {
     header("Location: ../login.php");
     exit();
 }
-function listClients($con)
+function listClientsbyUser($con)
 {
     $query = "SELECT * FROM clients WHERE idUser = " . $_SESSION['idUser'];
     $result = $con->query($query);
@@ -17,7 +17,15 @@ function listClients($con)
 
 include_once('../config/bd.php');
 
-$clients = listClients($con);
+$clients = listClientsbyUser($con);
+
+$count=count($clients); 
+
+function exedentClients($con)
+{
+    
+}
+
 
 ?>
 <!DOCTYPE html>
@@ -222,7 +230,7 @@ $clients = listClients($con);
         <a href="../logic/authUser.php?action=logout">Cerrar Sesion</a>
     </div>
 
-    <h1 class="title-page">Dashboard</h1>
+    <h1 class="title-page">Dashboard-total de clientes activos=<?= $count ?></h1>
 
     <button onclick="window.location.href = 'clientmanagement.php?action=add';" class="add-client">Add Client</button>
 
@@ -267,7 +275,7 @@ $clients = listClients($con);
     ?>
 
     <div class="identification">
-        <p><span class="onlineindicator">Online:</span> <?php echo $_SESSION['username']; ?> </p>
+        <p><span class="onlineindicator">Clientes activos:</span> <?php echo $count; ?> </p>
     </div>
 
 

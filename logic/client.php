@@ -58,12 +58,13 @@ if (isset($_POST['action'])) {
             session_start();
             require_once('../config/bd.php');
             $client = getClientById($con, $_POST['id']);
+            $rst = compareDay($client['nextPayment'], $_POST['datePayment']);
             if ($rst) {
                 $message=$_POST['mesagge'];
             } else {
                 $message = "te recordamos de parte de " . $_SESSION['username'] . " que debes pagar tu mensualidad de " . $_POST['debt'] . " para el dia  " . $_POST['datePayment'];
             }
-
+            
             header("Location:../app/dasboard.php?auth=" . (editClient($con, $_POST['id'], $_POST['name'], $_POST['email'], $_POST['debt'], $_POST['datePayment'], $message) !== false ? "Cliente Actualizado" : "Error al actualizar el cliente"));
             break;
     }
