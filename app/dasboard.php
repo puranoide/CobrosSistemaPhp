@@ -232,7 +232,7 @@ function limitClients($count, $limit){
 
     <h1 class="title-page">Dashboard</h1>
 
-    <button <?php echo (limitClients($countClients,5)) ? 'disabled' : ''; ?> onclick="window.location.href = 'clientmanagement.php?action=add';" class="add-client"><?php echo (limitClients($countClients, 5)) ? 'usted no puede agregar mas de 2 clientes' : 'add client'; ?></button>
+    <button <?php echo (limitClients($countClients,5)) ? 'disabled' : ''; ?> onclick="window.location.href = 'clientmanagement.php?action=add';" class="add-client"><?php echo (limitClients($countClients, 5)) ? 'usted no puede agregar mas de 5 clientes' : 'add client'; ?></button>
 
     <table class="table-clients">
         <thead>
