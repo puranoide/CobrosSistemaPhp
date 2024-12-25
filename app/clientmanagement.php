@@ -28,7 +28,7 @@ if (!isset($_SESSION['idUser'])) {
     exit();
 }
 
-if(limitClients($countClients, 2)){
+if(limitClients($countClients, 10)){
     header("Location: ../app/dasboard.php?auth=Limite de clientes alcanzado");
     exit();
 }
