@@ -1,7 +1,35 @@
 <?php
 session_start();
+
+function listClients($con)
+{
+    $query = "SELECT * FROM clients WHERE idUser = " . $_SESSION['idUser'];
+    $result = $con->query($query);
+    $clients = array();
+    while ($row = $result->fetch_assoc()) {
+        $clients[] = $row;
+    }
+    return $clients;
+}
+
+include_once('../config/bd.php');
+
+$clients = listClients($con);
+$countClients = count($clients);
+function limitClients($count, $limit){
+    if ($count> $limit) {
+        return true;
+    } else {
+        return false;
+    }
+}
 if (!isset($_SESSION['idUser'])) {
     header("Location: ../login.php");
+    exit();
+}
+
+if(limitClients($countClients, 2)){
+    header("Location: ../app/dasboard.php?auth=Limite de clientes alcanzado");
     exit();
 }
 

@@ -18,6 +18,14 @@ function listClients($con)
 include_once('../config/bd.php');
 
 $clients = listClients($con);
+$countClients = count($clients);
+function limitClients($count, $limit){
+    if ($count> $limit) {
+        return true;
+    } else {
+        return false;
+    }
+}
 
 ?>
 <!DOCTYPE html>
@@ -224,7 +232,7 @@ $clients = listClients($con);
 
     <h1 class="title-page">Dashboard</h1>
 
-    <button onclick="window.location.href = 'clientmanagement.php?action=add';" class="add-client">Add Client</button>
+    <button <?php echo (limitClients($countClients,2)) ? 'disabled' : ''; ?> onclick="window.location.href = 'clientmanagement.php?action=add';" class="add-client"><?php echo (limitClients($countClients, 2)) ? 'usted no puede agregar mas de 2 clientes' : 'add client'; ?></button>
 
     <table class="table-clients">
         <thead>
