@@ -2,9 +2,9 @@
 
 
 $servername = "localhost";
-$username = "root";
-$password = "";
-$database = "kipuPay";
+$username = "u685818680_kipupayadmin";
+$password = "41/fXsR[";
+$database = "u685818680_kipupay";
 
 $con = new mysqli($servername, $username, $password, $database);
 
