@@ -6,7 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         date_default_timezone_set('America/Lima');
         $date= new DateTime();
         $formattedDate = $date->format('Y-m-d'); // Asignar el resultado a una variable
-        $stmt = $con->prepare("INSERT INTO mesagessends (message, clientsId, dateMessageSend) VALUES (?, ?, ?)");
+        $stmt = $con->prepare("INSERT INTO mesagesSends (message, clientsId, dateMessageSend) VALUES (?, ?, ?)");
         $stmt->bind_param("sis", $message, $id, $formattedDate);
         return $stmt->execute() ? $con->insert_id : $con->error;
     }
