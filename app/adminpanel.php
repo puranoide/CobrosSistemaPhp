@@ -2,6 +2,17 @@
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+
+    function getClientById($con, $id){
+        $query = "SELECT * FROM clients WHERE id = ?";
+        $stmt = $con->prepare($query);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_assoc();
+    }
+
     function sendMessage($con, $id, $message){
         date_default_timezone_set('America/Lima');
         $date= new DateTime();
@@ -10,12 +21,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->bind_param("sis", $message, $id, $formattedDate);
         return $stmt->execute() ? $con->insert_id : $con->error;
     }
-    function sendMail(){
+    function sendMail($mail,$mensaje){
         $para="puranogame@gmail.com";
-        $asunto="Nuevo Registro correo'";
-        $mensaje="mensaje de prueba";
+        $asunto="Recordatorio de pago";
+        //$mensaje="mensaje de prueba";
         $cabecera="From: no-reply@darkslateblue-fly-946582.hostingersite.com";
-        if(mail($para,$asunto,$mensaje,$cabecera)){
+        if(mail($mail,$asunto,$mensaje,$cabecera)){
             return true;
         }else{
             return false;
@@ -31,11 +42,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             require_once('../config/bd.php');
             $id=$_POST['id'];
             $message=$_POST['message'];
+            $client = getClientById($con, $id);
             $respuesta = sendMessage($con, $id, $message);
             if ($respuesta === false) {
                 header("Location:../app/adminpanel.php?user=admin&pass=3_0i1n{-TJ-XUBQ_2azQ-;;3h1PDygV-]4*7}kCC))yR-{e3c(en[5=-/}bXS:g*:4-TcG[GZ{XZh-5@jXByU-dt-YA0DfWqXY)-uQYZ6*c5_4&message=Error al enviar el mensaje");
             }
-            sendMail();
+            sendMail($client['email'], $message);
             header("Location:../app/adminpanel.php?user=admin&pass=3_0i1n{-TJ-XUBQ_2azQ-;;3h1PDygV-]4*7}kCC))yR-{e3c(en[5=-/}bXS:g*:4-TcG[GZ{XZh-5@jXByU-dt-YA0DfWqXY)-uQYZ6*c5_4&message=mensaje enviado id=$respuesta");
             print_r($respuesta);
             break;
